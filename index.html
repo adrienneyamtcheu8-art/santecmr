@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CamSanté - Orientation Médicale</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+<h1>■■ CamSanté</h1>
+<p>Trouvez l'orientation médicale et l'hôpital le plus proche au Cameroun</p>
+</header>
+<main class="container">
+<div class="alert-warning">
+<strong>■■ Avertissement important :</strong> Ce site est un outil d'orientation
+purement informatif. Il ne remplace en aucun cas une consultation médicale physique chez un
+médecin. En cas d'urgence absolue, rendez-vous immédiatement dans l'hôpital le plus proche.
+</div>
+<section class="form-section">
+<h2>Étape 1 : Vos Informations</h2>
+<form id="healthForm" onsubmit="analyserSymptomes(event)">
+<div class="form-grid">
+<div class="form-group">
+<label for="userName">Nom complet :</label>
+<input type="text" id="userName" placeholder="Ex: Paul Biya" required>
+</div>
+<div class="form-group">
+<label for="userCity">Ville au Cameroun :</label>
+<select id="userCity" required onchange="mettreAjourQuartiers()">
+<option value="">-- Sélectionnez votre ville --</option>
+<option value="Yaoundé">Yaoundé</option>
+<option value="Douala">Douala</option>
+<option value="Bafoussam">Bafoussam</option>
+<option value="Garoua">Garoua</option>
+</select>
+</div>
+<div class="form-group">
+<label for="userQuarter">Quartier :</label>
+<select id="userQuarter" required>
+<option value="">-- Choisissez d'abord la ville --</option>
+</select>
+</div>
+</div>
+<h2>Étape 2 : Quels sont vos symptômes ?</h2>
+<p class="subtitle">Sélectionnez le symptôme principal qui vous dérange le plus
+:</p>
+<div class="symptoms-grid">
+<label class="symptom-card">
+<input type="radio" name="symptom" value="fievre_maux_tete" required>
+<span>Forte fièvre, Maux de tête, Courbatures</span>
+</label>
+<label class="symptom-card">
+<input type="radio" name="symptom" value="toux_fievre_respiration">
+<span>Toux sèche, Fièvre, Difficulté à respirer</span>
+</label>
+<label class="symptom-card">
+<input type="radio" name="symptom" value="diarrhee_vomissement">
+<span>Diarrhée liquide fréquente, Vomissements</span>
+</label>
+<label class="symptom-card">
+<input type="radio" name="symptom" value="fatigue_soif_poids">
+<span>Grande fatigue, Soif intense, Perte de poids rapide</span>
+</label>
+</div>
+<button type="submit" class="btn-analyse">Lancer l'analyse médicale</button>
+</form>
+</section>
+<section id="resultSection" class="result-section hidden">
+<div class="result-header">
+<h3>Rapport d'Orientation pour <span id="resName"></span></h3>
+<p>Localisation actuelle : <span id="resLocation"></span></p>
+</div>
+<div class="analysis-box">
+<h4>■ Hypothèses de diagnostics (Différentiel) :</h4>
+<p class="disclaimer-text">Sur la base de vos symptômes, voici 3 causes
+possibles...</p>
+<ul id="diseasePossibilities"></ul>
+</div>
+<div class="hospital-box">
+<h4>■ Hôpital recommandé le plus proche de chez vous :</h4>
+<div class="hospital-card">
+<h5 id="hospitalName">Hôpital Général</h5>
+<p id="hospitalDetails">Chargement des détails...</p>
+</div>
+</div>
+<div class="actions-box">
+<h4>■ Ce que vous devez faire (3 options de prise en charge) :</h4>
+<ol id="actionList"></ol>
+</div>
+</section>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
